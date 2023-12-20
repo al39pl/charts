@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import * as d3 from 'd3';
 import { Charts } from '../../../models/data.model';
 import { format } from 'date-fns';
@@ -7,18 +16,27 @@ import { format } from 'date-fns';
   selector: 'chart',
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() index: number;
+  @ViewChild('svg') private svg: ElementRef;
+
   @Input() chart: Charts;
-  @Input() chartType: string = 'line';
-  @Input() chartColor: string = '#e5c308';
+  @Input() chartsAmount: number | null = 4;
+  @Input() chartsColor: string | null = '#e5c308';
+  @Input() chartsType: string | null = 'line';
   @Input() mergeChartData: boolean = false;
 
   chartAmount: number = 4;
   chartId: string;
   ngOnInit(): void {
     this.chartId = `chart-${this.index}`;
+  }
+
+  ngOnChanges() {
+    this.graph.selectAll('*').remove();
+    this.displayChart(this.chart.data);
   }
 
   ngAfterViewInit() {
@@ -73,7 +91,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
       .attr('text-anchor', 'middle')
       .text(this.chart.title);
 
-    if (this.chartType == 'line') {
+    if (this.chartsType == 'line') {
       this.displayLine(data, x, y);
     } else {
       this.displayBar(data, x, y);
@@ -85,7 +103,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
       .append('path')
       .datum(data)
       .attr('fill', 'none')
-      .attr('stroke', this.chartColor)
+      .attr('stroke', this.chartsColor)
       .attr('stroke-width', 1.5)
       .attr(
         'd',
@@ -108,6 +126,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
       .attr('y', (d: any) => y(d.value))
       .attr('width', x.bandwidth())
       .attr('height', (d: any) => this.height - y(d.value))
-      .attr('fill', this.chartColor);
+      .attr('fill', this.chartsColor);
   }
 }

@@ -19,7 +19,7 @@ export const chartSettingsChangeColor = createAction(
 );
 
 export const chartSettingsChangeType = createAction(
-  `${prefix} Change amount`,
+  `${prefix} Change type`,
   props<{
     chartsType: string;
   }>()

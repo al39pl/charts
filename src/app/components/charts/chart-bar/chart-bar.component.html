@@ -7,7 +7,9 @@
     >
     <select
       id="chart_amount"
+      name="chart_amount"
       class="w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      (change)="onChange($event)"
     >
       <option value="4">4</option>
       <option value="3">3</option>
@@ -18,13 +20,15 @@
   </div>
   <div>
     <label
-      for="countries_color"
+      for="chart_color"
       class="block mb-2 text-sm font-medium text-gray-900"
       >Chart color:</label
     >
     <select
-      id="countries_color"
+      id="chart_color"
+      name="chart_color"
       class="w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      (change)="onChange($event)"
     >
       <option value="#e5c308">#e5c308</option>
       <option value="#01b9c5">#01b9c5</option>
@@ -33,17 +37,17 @@
     </select>
   </div>
   <div>
-    <label
-      for="countries_color"
-      class="block mb-2 text-sm font-medium text-gray-900"
+    <label for="chart_type" class="block mb-2 text-sm font-medium text-gray-900"
       >Chart type:</label
     >
     <select
-      id="countries_color"
+      id="chart_type"
+      name="chart_type"
       class="w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      (change)="onChange($event)"
     >
-      <option value="Line">Line</option>
-      <option value="Bar">Bar</option>
+      <option value="line">Line</option>
+      <option value="bar">Bar</option>
     </select>
   </div>
 </div>
