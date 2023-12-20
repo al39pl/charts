@@ -35,8 +35,10 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.graph.selectAll('*').remove();
-    this.displayChart(this.chart.data);
+    if (this.graph) {
+      this.graph.selectAll('*').remove();
+      this.displayChart(this.chart.data);
+    }
   }
 
   ngAfterViewInit() {
