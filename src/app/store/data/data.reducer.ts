@@ -2,13 +2,13 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { DataState } from '../../models/data.model';
 import { createBookSuccess, getData } from './data.actions';
 
-export const initialDataState: DataState = {
+export const initialState: DataState = {
   data: [],
   isLoading: false,
 };
 
 const reducer = createReducer<DataState>(
-  initialDataState,
+  initialState,
   on(getData, (state) => {
     return {
       ...state,
@@ -24,9 +24,6 @@ const reducer = createReducer<DataState>(
   })
 );
 
-export function dataReducer(
-  state = initialDataState,
-  actions: Action
-): DataState {
+export function dataReducer(state = initialState, actions: Action): DataState {
   return reducer(state, actions);
 }

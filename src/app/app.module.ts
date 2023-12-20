@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ChartsContainerComponent } from './components/charts/charts.component';
 import { ChartComponent } from './components/charts/chart/chart.component';
 import { ChartBarComponent } from './components/charts/chart-bar/chart-bar.component';
+import { ChartSettingsStoreModule } from './store/сharts-settings/сharts-settings.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ChartBarComponent } from './components/charts/chart-bar/chart-bar.compo
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({}),
     DataStoreModule,
+    ChartSettingsStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
