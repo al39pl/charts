@@ -38,7 +38,7 @@ export class DataServiceService {
         )
       );
     }
-    return dates.sort((a, b) => b.getTime() - a.getTime());
+    return dates.sort((a, b) => a.getTime() - b.getTime());
   }
 
   getData(): Observable<Charts[]> {

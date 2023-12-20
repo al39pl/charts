@@ -1,8 +1,25 @@
 <header class="mb-10 flex w-full justify-center">
-  <h1 class="text-4xl font-extrabold">Angular + D3 - test project</h1>
+  <h1 class="block text-4xl font-extrabold">Angular + D3 - test project</h1>
 </header>
+<div class="mb-10 flex w-full justify-center">
+  <p class="block font-extrabold">(work in progress)</p>
+</div>
 <div class="flex w-full justify-center">
-  <div>
-    <router-outlet></router-outlet>
-  </div>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    [routerLink]="['/']"
+    fragment="main"
+  >
+    main
+  </button>
+  <button
+    class="ml-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    [routerLink]="['/charts']"
+    fragment="charts"
+  >
+    charts
+  </button>
+</div>
+<div class="mt-10">
+  <router-outlet></router-outlet>
 </div>

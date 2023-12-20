@@ -11,6 +11,9 @@ import { format } from 'date-fns';
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() chart: Charts;
+  @Input() chartType: string = 'line';
+  @Input() chartColor: string = '#e5c308';
+  @Input() mergeChartData: boolean = false;
 
   chartAmount: number = 4;
   chartId: string;
@@ -70,23 +73,19 @@ export class ChartComponent implements OnInit, AfterViewInit {
       .attr('text-anchor', 'middle')
       .text(this.chart.title);
 
-    // this.bar
-    //   .selectAll('bars')
-    //   .data(data)
-    //   .enter()
-    //   .append('rect')
-    //   .attr('title', 123)
-    //   .attr('x', (d: any) => x(format(d.date, 'dd/MM/yyyy')))
-    //   .attr('y', (d: any) => y(d.value))
-    //   .attr('width', x.bandwidth())
-    //   .attr('height', (d: any) => this.height - y(d.value))
-    //   .attr('fill', '#d04a35');
+    if (this.chartType == 'line') {
+      this.displayLine(data, x, y);
+    } else {
+      this.displayBar(data, x, y);
+    }
+  }
 
+  private displayLine(data: any[], x: any, y: any): void {
     this.graph
       .append('path')
       .datum(data)
       .attr('fill', 'none')
-      .attr('stroke', 'steelblue')
+      .attr('stroke', this.chartColor)
       .attr('stroke-width', 1.5)
       .attr(
         'd',
@@ -98,7 +97,17 @@ export class ChartComponent implements OnInit, AfterViewInit {
       );
   }
 
-  private displayLine(data: any[]): void {}
-
-  private displayBar(data: any[]): void {}
+  private displayBar(data: any[], x: any, y: any): void {
+    this.graph
+      .selectAll('bars')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('title', 123)
+      .attr('x', (d: any) => x(format(d.date, 'dd/MM/yyyy')))
+      .attr('y', (d: any) => y(d.value))
+      .attr('width', x.bandwidth())
+      .attr('height', (d: any) => this.height - y(d.value))
+      .attr('fill', this.chartColor);
+  }
 }
