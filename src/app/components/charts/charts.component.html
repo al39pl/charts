@@ -1,0 +1,6 @@
+<div>
+  <chart-top-bar></chart-top-bar>
+  @for (chart of charts$ | async; track $index) {
+  <chart [chart]="chart" [index]="$index"></chart>
+  } @empty { No data }
+</div>
