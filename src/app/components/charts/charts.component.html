@@ -1,7 +1,7 @@
 <div>
   <chart-top-bar></chart-top-bar>
   <div class="mt-10 flex justify-center">
-    <div class="grid grid-cols-2 container">
+    <div class="grid md:grid-cols-2 sm:grid-cols-1 container">
       @for (chart of charts$ | async; track $index) {
       <chart
         [chartsAmount]="chartsAmount$ | async"

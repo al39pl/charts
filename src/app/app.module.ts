@@ -12,6 +12,10 @@ import { ChartsContainerComponent } from './components/charts/charts.component';
 import { ChartComponent } from './components/charts/chart/chart.component';
 import { ChartBarComponent } from './components/charts/chart-bar/chart-bar.component';
 import { ChartSettingsStoreModule } from './store/сharts-settings/сharts-settings.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { ChartSettingsStoreModule } from './store/сharts-settings/сharts-setti
     StoreDevtoolsModule.instrument({}),
     DataStoreModule,
     ChartSettingsStoreModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
